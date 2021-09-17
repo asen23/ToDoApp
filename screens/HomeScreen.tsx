@@ -4,7 +4,7 @@ import tw from "tailwind"
 import { MaterialIcons } from "@expo/vector-icons"
 import { Todo } from "type"
 
-export default function HomeScreen() {
+export default function ToDoScreen() {
     const [text, setText] = useState("")
     const [inputIsActive, setInputIsActive] = useState(false)
     const [todo, setTodo] = useState<Todo[]>([])
