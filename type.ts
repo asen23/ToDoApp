@@ -6,3 +6,8 @@ export type StackParamList = {
 }
 
 export type StackScreenProps<Screen extends keyof StackParamList> = NativeStackScreenProps<StackParamList, Screen>
+
+export type Todo = {
+    completed: boolean,
+    todo: string,
+}
