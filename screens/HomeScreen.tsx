@@ -6,7 +6,6 @@ import { Todo } from "type"
 
 export default function ToDoScreen() {
     const [text, setText] = useState("")
-    const [inputIsActive, setInputIsActive] = useState(false)
     const [todo, setTodo] = useState<Todo[]>([])
 
     return (
@@ -17,19 +16,15 @@ export default function ToDoScreen() {
         >
             <View
                 // class="
-                style={tw`flex-row p-2 border border-black rounded-3xl`}
+                style={tw`flex-row p-2 border border-black rounded-3xl bg-white`}
                 // "
             >
                 <TextInput
                     onChangeText={setText}
                     value={text}
                     placeholder="Add todo"
-                    onBlur={() => setInputIsActive(false)}
-                    onFocus={() => setInputIsActive(true)}
                     // class="
-                    style={tw.style("flex-1", {
-                        "border-transparent": inputIsActive,
-                    })}
+                    style={tw`flex-1`}
                     // "
                 />
                 <TouchableOpacity
