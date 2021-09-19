@@ -3,10 +3,20 @@ import { View, TextInput, TouchableOpacity, FlatList, Text } from "react-native"
 import tw from "tailwind"
 import { MaterialIcons } from "@expo/vector-icons"
 import { Todo } from "type"
+import { v4 as uuid } from "uuid"
+import ToDoItem from "./ToDoItem/ToDoItem"
 
 export default function ToDoScreen() {
     const [text, setText] = useState("")
     const [todo, setTodo] = useState<Todo[]>([])
+
+    const addTodo = () => {
+        setTodo((todo) => [
+            ...todo,
+            { id: uuid(), completed: false, todo: text },
+        ])
+        setText("")
+    }
 
     return (
         <View
@@ -21,27 +31,20 @@ export default function ToDoScreen() {
             >
                 <TextInput
                     onChangeText={setText}
+                    onSubmitEditing={() => addTodo()}
                     value={text}
                     placeholder="Add todo"
                     // class="
                     style={tw`flex-1`}
                     // "
                 />
-                <TouchableOpacity
-                    onPress={() => {
-                        setTodo((todo) => [
-                            ...todo,
-                            { completed: false, todo: text },
-                        ])
-                        setText("")
-                    }}
-                >
+                <TouchableOpacity onPress={() => addTodo()}>
                     <MaterialIcons name="add" size={24} color="black" />
                 </TouchableOpacity>
             </View>
             <FlatList
                 data={todo}
-                renderItem={({ item }) => <Text>{item.todo}</Text>}
+                renderItem={({ item }) => <ToDoItem item={item} />}
             />
         </View>
     )
