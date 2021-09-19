@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import ToDoScreen from "screens/HomeScreen"
 import { StackParamList } from "./type"
+import "react-native-get-random-values"
 
 const Stack = createNativeStackNavigator<StackParamList>()
 
