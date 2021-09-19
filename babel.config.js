@@ -6,10 +6,11 @@ module.exports = function (api) {
             [
                 "module-resolver",
                 {
-                    extensions: [".tsx", ".js"],
+                    extensions: [".tsx", ".js", ".ts"],
                     alias: {
                         screens: ["./screens"],
                         tailwind: ["./tailwind"],
+                        type: ["./type"],
                     },
                 },
             ],
