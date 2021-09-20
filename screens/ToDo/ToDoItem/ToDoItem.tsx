@@ -1,37 +1,52 @@
 import React, { useState } from "react"
-import { View, Text } from "react-native"
 import PropTypes, { InferProps } from "prop-types"
 import { TodoProp } from "type"
 import tw from "tailwind"
-import { CheckBox } from "react-native-elements"
+import { ListItem, Button } from "react-native-elements"
 
-function ToDoItem({ item }: InferProps<typeof ToDoItem.propTypes>) {
+function ToDoItem({ item, onRemove }: InferProps<typeof ToDoItem.propTypes>) {
     const [completed, setCompleted] = useState(item.completed)
 
     return (
-        <View
-            // class="
-            style={tw`p-4 my-2 flex-row border-black border rounded-lg items-center`}
-            // "
+        <ListItem.Swipeable
+            key={item.id}
+            rightContent={
+                <Button
+                    icon={{ name: "delete", color: "white" }}
+                    // class="
+                    buttonStyle={tw`bg-red-600 h-full w-full`}
+                    // "
+                    onPress={() => {
+                        onRemove(item.id)
+                    }}
+                />
+            }
+            bottomDivider
         >
-            <CheckBox
-                checked={completed}
-                onPress={() => setCompleted((c) => !c)}
-            />
-            <Text
-                key={item.id}
+            <ListItem.Content
                 // class="
-                style={tw.style(completed && "line-through")}
+                style={tw`flex-row justify-start`}
                 // "
             >
-                {item.todo}
-            </Text>
-        </View>
+                <ListItem.CheckBox
+                    checked={completed}
+                    onPress={() => setCompleted((c) => !c)}
+                />
+                <ListItem.Title
+                    // class="
+                    style={tw.style(completed && "line-through")}
+                    // "
+                >
+                    {item.todo}
+                </ListItem.Title>
+            </ListItem.Content>
+        </ListItem.Swipeable>
     )
 }
 
 ToDoItem.propTypes = {
     item: PropTypes.exact(TodoProp).isRequired,
+    onRemove: PropTypes.func.isRequired,
 }
 
 export default ToDoItem

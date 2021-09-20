@@ -18,6 +18,10 @@ export default function ToDoScreen() {
         setText("")
     }
 
+    const removeTodo = (id: String) => {
+        setTodo((todo) => [...todo.filter((todo) => todo.id != id)])
+    }
+
     return (
         <View
             // class="
@@ -44,7 +48,9 @@ export default function ToDoScreen() {
             </View>
             <FlatList
                 data={todo}
-                renderItem={({ item }) => <ToDoItem item={item} />}
+                renderItem={({ item }) => (
+                    <ToDoItem item={item} onRemove={removeTodo} />
+                )}
             />
         </View>
     )
