@@ -1,6 +1,5 @@
-import { create } from "tailwind-react-native-classnames"
-import styles from "./tw-rn-styles.json"
+import { create } from "twrnc"
 
-const tw = create(styles)
+const tw = create(require(`./tailwind.config.js`))
 
 export default tw
