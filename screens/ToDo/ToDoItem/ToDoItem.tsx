@@ -34,7 +34,7 @@ function ToDoItem({ item, onRemove }: InferProps<typeof ToDoItem.propTypes>) {
                 />
                 <ListItem.Title
                     // class="
-                    style={tw.style(completed && "line-through")}
+                    style={tw.style({ "line-through": completed })}
                     // "
                 >
                     {item.todo}
