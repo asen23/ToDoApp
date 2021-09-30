@@ -9,6 +9,7 @@ import ToDoItem from "./ToDoItem/ToDoItem"
 export default function ToDoScreen() {
     const [text, setText] = useState("")
     const [todo, setTodo] = useState<Todo[]>([])
+    const [refreshing, setRefreshing] = useState(false)
 
     const addTodo = () => {
         setTodo((todo) => [
@@ -20,6 +21,11 @@ export default function ToDoScreen() {
 
     const removeTodo = (id: String) => {
         setTodo((todo) => [...todo.filter((todo) => todo.id != id)])
+    }
+
+    const onRefresh = () => {
+        setRefreshing(true)
+        setTimeout(() => setRefreshing(false), 1000)
     }
 
     return (
@@ -51,6 +57,8 @@ export default function ToDoScreen() {
                 renderItem={({ item }) => (
                     <ToDoItem item={item} onRemove={removeTodo} />
                 )}
+                refreshing={refreshing}
+                onRefresh={onRefresh}
             />
         </View>
     )
