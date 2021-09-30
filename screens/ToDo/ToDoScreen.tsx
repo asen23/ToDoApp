@@ -2,25 +2,35 @@ import React, { useState } from "react"
 import { View, TextInput, TouchableOpacity, FlatList, Text } from "react-native"
 import tw from "tailwind"
 import { MaterialIcons } from "@expo/vector-icons"
-import { Todo } from "type"
+import type { Todo } from "type"
 import { v4 as uuid } from "uuid"
 import ToDoItem from "./ToDoItem/ToDoItem"
+import { addToDo, removeToDo, updateToDo } from "reduxSlice/ToDoSlice"
+import { useAppSelector, useAppDispatch } from "hooks"
 
 export default function ToDoScreen() {
     const [text, setText] = useState("")
-    const [todo, setTodo] = useState<Todo[]>([])
+    const todo = useAppSelector((state) => state.todo.ToDo)
     const [refreshing, setRefreshing] = useState(false)
+    const dispatch = useAppDispatch()
 
     const addTodo = () => {
-        setTodo((todo) => [
-            ...todo,
-            { id: uuid(), completed: false, todo: text },
-        ])
+        dispatch(
+            addToDo({
+                id: uuid(),
+                completed: false,
+                todo: text,
+            })
+        )
         setText("")
     }
 
     const removeTodo = (id: String) => {
-        setTodo((todo) => [...todo.filter((todo) => todo.id != id)])
+        dispatch(removeToDo(id))
+    }
+
+    const onChangeCompleted = (id: String) => {
+        dispatch(updateToDo(id))
     }
 
     const onRefresh = () => {
@@ -41,21 +51,21 @@ export default function ToDoScreen() {
             >
                 <TextInput
                     onChangeText={setText}
-                    onSubmitEditing={() => addTodo()}
+                    onSubmitEditing={addTodo}
                     value={text}
                     placeholder="Add todo"
                     // class="
                     style={tw`flex-1`}
                     // "
                 />
-                <TouchableOpacity onPress={() => addTodo()}>
+                <TouchableOpacity onPress={addTodo}>
                     <MaterialIcons name="add" size={24} color="black" />
                 </TouchableOpacity>
             </View>
             <FlatList
                 data={todo}
                 renderItem={({ item }) => (
-                    <ToDoItem item={item} onRemove={removeTodo} />
+                    <ToDoItem item={item} onRemove={removeTodo} onChangeCompleted={onChangeCompleted} />
                 )}
                 refreshing={refreshing}
                 onRefresh={onRefresh}

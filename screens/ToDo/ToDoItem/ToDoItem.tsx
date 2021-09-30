@@ -4,8 +4,7 @@ import { TodoProp } from "type"
 import tw from "tailwind"
 import { ListItem, Button } from "react-native-elements"
 
-function ToDoItem({ item, onRemove }: InferProps<typeof ToDoItem.propTypes>) {
-    const [completed, setCompleted] = useState(item.completed)
+function ToDoItem({ item, onRemove, onChangeCompleted }: InferProps<typeof ToDoItem.propTypes>) {
 
     return (
         <ListItem.Swipeable
@@ -29,12 +28,12 @@ function ToDoItem({ item, onRemove }: InferProps<typeof ToDoItem.propTypes>) {
                 // "
             >
                 <ListItem.CheckBox
-                    checked={completed}
-                    onPress={() => setCompleted((c) => !c)}
+                    checked={item.completed}
+                    onPress={() => onChangeCompleted(item.id)}
                 />
                 <ListItem.Title
                     // class="
-                    style={tw.style({ "line-through": completed })}
+                    style={tw.style({ "line-through": item.completed })}
                     // "
                 >
                     {item.todo}
@@ -47,6 +46,7 @@ function ToDoItem({ item, onRemove }: InferProps<typeof ToDoItem.propTypes>) {
 ToDoItem.propTypes = {
     item: PropTypes.exact(TodoProp).isRequired,
     onRemove: PropTypes.func.isRequired,
+    onChangeCompleted: PropTypes.func.isRequired,
 }
 
 export default ToDoItem
