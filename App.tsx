@@ -5,17 +5,21 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import ToDoScreen from "screens/ToDo/ToDoScreen"
 import { StackParamList } from "type"
 import "react-native-get-random-values"
+import store from "store"
+import { Provider } from "react-redux"
 
 const Stack = createNativeStackNavigator<StackParamList>()
 
 export default function App() {
     return (
-        <SafeAreaProvider>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name="To Do" component={ToDoScreen} />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </SafeAreaProvider>
+        <Provider store={store}>
+            <SafeAreaProvider>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen name="To Do" component={ToDoScreen} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </Provider>
     )
 }
