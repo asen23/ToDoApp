@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import PropTypes, { InferProps } from "prop-types"
 import { TodoProp } from "type"
 import tw from "tailwind"
