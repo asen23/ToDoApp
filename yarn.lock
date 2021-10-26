@@ -4152,11 +4152,6 @@ lodash.frompairs@^4.0.1:
   resolved "https://registry.yarnpkg.com/lodash.frompairs/-/lodash.frompairs-4.0.1.tgz#bc4e5207fa2757c136e573614e9664506b2b1bd2"
   integrity sha1-vE5SB/onV8E25XNhTpZkUGsrG9I=
 
-lodash.get@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
-  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
-
 lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
@@ -6235,12 +6230,10 @@ ts-interface-checker@^0.1.9:
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
 
-twrnc@^2.0.0-beta.6:
-  version "2.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/twrnc/-/twrnc-2.0.0-beta.6.tgz#acbec854a92ebc9cd63eaf7c03154c5afbb6e9be"
-  integrity sha512-Ah7/IYOZA3hzCrWEq7HFyXJ1RK4VVQElLyb5jXx3AWiT0tDCFZOwLtLsbfXI+f8csb84DMkznYOyNJ5vtHG3GA==
-  dependencies:
-    lodash.get "^4.4.2"
+twrnc@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/twrnc/-/twrnc-2.0.0.tgz#89e0e4eab9eadb50651ed8e8703722d900b005a0"
+  integrity sha512-3/2zqj1QDduq9x1TrKyHwS6kwYCrPdrutSBAzYsdLqhTcHbSb5aNohISYjwiOTsm3TK7y6qq88fPqmLWghK+Yg==
 
 type-fest@^0.7.1:
   version "0.7.1"
